@@ -1,9 +1,18 @@
+from __future__ import annotations #fix for return typehint warning at staticmethod get_random_box_id
+import random
+import string
+
 class BoxId:
     __id_len: int = 26
 
     @staticmethod
     def get_id_len() -> int:
         return BoxId.__id_len
+    
+    @staticmethod
+    def get_random_box_id() -> BoxId:
+       id = ''.join(random.choice(string.ascii_letters) for __ in range(BoxId.get_id_len()))
+       return BoxId(id)
 
 
     def __init__(self, id: str) -> None:

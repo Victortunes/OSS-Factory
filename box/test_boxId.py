@@ -40,6 +40,13 @@ class TestBoxId(unittest.TestCase):
         with self.assertRaises(TypeError):
             BoxId(id)
 
+    def test_id_random(self):
+        for __ in range(10):
+            try:
+                BoxId.get_random_box_id()
+            except (IdWrongLength, IdNotAlphabetic, TypeError) as e:
+                self.fail(str(e))
+
 
 if __name__ == '__main__':
     unittest.main()

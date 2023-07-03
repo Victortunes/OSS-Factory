@@ -35,6 +35,11 @@ class TestBoxId(unittest.TestCase):
         with self.assertRaises(IdNotAlphabetic):
             BoxId(id)
 
+    def test_id_wrong_type(self):
+        id = 1*10**(self.__id_len-1)
+        with self.assertRaises(TypeError):
+            BoxId(id)
+
 
 if __name__ == '__main__':
     unittest.main()

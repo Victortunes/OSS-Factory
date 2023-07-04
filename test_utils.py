@@ -25,7 +25,7 @@ class TestUtilsIsContainingExactlyXNumberOfAnyChar(unittest.TestCase):
 
         for number_of_occurences, expected in number_of_occurences_with_expected.items():
             actual = utils.is_containing_exactly_x_number_of_any_char(test_text, number_of_occurences)
-            self.assertEqual(actual, expected, msg=f'Error during this number of occurences {number_of_occurences}')
+            self.assertEqual(actual, expected, msg=f'Error during testing this number of occurences {number_of_occurences}')
 
     def test_empty_string(self):
         self.assertEqual(utils.is_containing_exactly_x_number_of_any_char('', 1), False)

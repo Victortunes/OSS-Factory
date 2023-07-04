@@ -14,8 +14,8 @@ class TestBoxCollectionEmpty(unittest.TestCase):
         box_set = set()
         for __ in range(10):
             box = Box(BoxId.get_random_box_id().id)
-            box_set.add(box)
-            try: self.__box_collection.register(box)
+            box_set.add(box) # ok
+            try: self.__box_collection.register(box) #should fail, already added
             except BoxAlreadyExistInCollection: pass 
 
         self.assertEqual(box_set, self.__box_collection.collection)
@@ -24,6 +24,19 @@ class TestBoxCollectionEmpty(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.__box_collection.register(1)
 
+    def test_checksum_empty_collection(self):
+        self.assertEqual(self.__box_collection.checksum, 0)
+    
+    def test_valid_checksum(self):
+        expected = 12
+        remaining_length = BoxId.get_id_len() - len("abcdef")
+        box_ids = ["abcdef", "bababc", "abbcde", "abcccd", "aabcdd", "abcdee", "ababab"]
+        box_ids = list(map(lambda id: id + 'z'*remaining_length, box_ids))
+
+        for box_id in box_ids:
+            self.__box_collection.register(Box(box_id))
+        
+        self.assertEqual(expected, self.__box_collection.checksum)
 
 
 class TestBoxCollectionPrefilled(unittest.TestCase):

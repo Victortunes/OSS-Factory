@@ -22,7 +22,7 @@ class TestBoxCollectionEmpty(unittest.TestCase):
 
     def test_register_box_wrong_datatype(self):
         with self.assertRaises(TypeError):
-            self.__box_collection.register(1)
+            self.__box_collection.register(1) # type: ignore
 
     def test_checksum_empty_collection(self):
         self.assertEqual(self.__box_collection.checksum, 0)
@@ -70,7 +70,7 @@ class TestBoxCollectionPrefilled(unittest.TestCase):
     
     def test_unregister_box_wrong_datatype(self):
         with self.assertRaises(TypeError):
-            self.__box_collection.unregister(1)
+            self.__box_collection.unregister(1) # type: ignore
 
     def test_length_method(self):
         self.assertEqual(len(self.__box_collection), self.__number_prefilled_boxes)

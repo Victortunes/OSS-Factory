@@ -14,7 +14,7 @@ class TestUtilsOccurencePerChar(unittest.TestCase):
 
     def test_wrong_datatype(self):
         with self.assertRaises(TypeError):
-            utils.occurence_per_char(1)
+            utils.occurence_per_char(1) # type: ignore
 
 
 class TestUtilsIsContainingExactlyXNumberOfAnyChar(unittest.TestCase):
@@ -32,11 +32,11 @@ class TestUtilsIsContainingExactlyXNumberOfAnyChar(unittest.TestCase):
 
     def test_wrong_text_datatype(self):
         with self.assertRaises(TypeError):
-            utils.is_containing_exactly_x_number_of_any_char(1,1)
+            utils.is_containing_exactly_x_number_of_any_char(1,1) # type: ignore
 
     def test_wrong_occurence_number_datatype(self):
         with self.assertRaises(TypeError):
-            utils.is_containing_exactly_x_number_of_any_char('','1')
+            utils.is_containing_exactly_x_number_of_any_char('','1') # type: ignore
 
     def test_occurence_number_out_of_range(self):
         with self.assertRaises(ValueError):

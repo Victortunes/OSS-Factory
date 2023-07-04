@@ -19,7 +19,7 @@ class TestFileStoragePath(unittest.TestCase):
 
     def test_path_invalid_datatype(self):
         with self.assertRaises(TypeError):
-            FileStorage(1)
+            FileStorage(1) # type: ignore
 
     def test_path_not_exists(self):
         with self.assertRaises(PathNotExists):

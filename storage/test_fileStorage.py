@@ -55,6 +55,23 @@ class TestFileStorageRegister(unittest.TestCase):
         self.assertEqual(len(unregistered_boxes), 0, "Error during importation of box ids")
         self.assertEqual(set(map(lambda box: box.id, actual_box_collection.collection)), set(map(lambda box: box.id, self.__expected_box_collection)), msg='Missing or more or incorrect imported box ids')
 
+    def test_valid_import_file_without_new_line_at_the_end(self):
+            repetition = 10
+            for i in range(repetition):
+                box = Box(BoxId.get_random_box_id().id)
+                self.__expected_box_collection.add(box)
+                self.__file.write(box.id)
+                if i+1 != repetition: self.__file.write('\n')
+            
+            self.__file.close()
+            
+            file_storage = FileStorage(self.__file_name)
+            actual_box_collection = BoxCollection()
+            actual_box_collection, unregistered_boxes = file_storage.register_into_box_collection(actual_box_collection)
+
+            self.assertEqual(len(unregistered_boxes), 0, "Error during importation of box ids")
+            self.assertEqual(set(map(lambda box: box.id, actual_box_collection.collection)), set(map(lambda box: box.id, self.__expected_box_collection)), msg='Missing or more or incorrect imported box ids')
+
     def test_invalid_import_file_with_invalid_length_box_id(self):
         invalid_box_id = 'abce'
         self.__file.write(f'{invalid_box_id}\n')        

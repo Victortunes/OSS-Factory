@@ -1,7 +1,6 @@
 from pathlib import Path
 import copy
 
-from storage.storage import Storage
 from box.box import Box
 from box.boxId import IdWrongLength, IdNotAlphabetic
 from box.boxCollection import BoxCollection
@@ -33,7 +32,7 @@ class FileStorage:
         unregistered_boxes: list[dict[str,str|IdNotAlphabetic|IdWrongLength]] = []
 
         for box_id in self.__path.open('rt'):
-            box_id = box_id[:-1] #delete newline char
+            if box_id[-1] == '\n': box_id = box_id[:-1] #delete newline char
             try:
                 box = Box(box_id)
                 box_collection.register(box)
@@ -42,7 +41,6 @@ class FileStorage:
                 unregistered_boxes.append(box_error)
         
         return box_collection, unregistered_boxes
-
 
     @property
     def path(self) -> Path:

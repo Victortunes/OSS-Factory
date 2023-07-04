@@ -7,7 +7,7 @@ from box.box import Box
 class TestBox(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.__id_len: int = BoxId.get_id_len()
+        self.__id_len: int = BoxId.get_max_id_len()
 
     def test_id_valid(self):
         id = 'a'*self.__id_len

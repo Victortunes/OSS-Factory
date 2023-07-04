@@ -84,7 +84,7 @@ class TestFileStorageRegister(unittest.TestCase):
         self.assertEqual(type(unregistered_boxes[0]['error']), IdWrongLength, msg='Check if the returned error is the same as expected')
 
     def test_invalid_import_file_with_invalid_non_alpha_box_id(self):
-        invalid_box_id = 'a' + '1'*(BoxId.get_id_len()-1)
+        invalid_box_id = 'a' + '1'*(BoxId.get_max_id_len()-1)
         self.__file.write(f'{invalid_box_id}\n')        
         self.__file.close()
         

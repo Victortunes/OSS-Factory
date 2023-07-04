@@ -29,9 +29,7 @@ class TestBoxCollectionEmpty(unittest.TestCase):
     
     def test_valid_checksum(self):
         expected = 12
-        remaining_length = BoxId.get_id_len() - len("abcdef")
         box_ids = ["abcdef", "bababc", "abbcde", "abcccd", "aabcdd", "abcdee", "ababab"]
-        box_ids = list(map(lambda id: id + 'z'*remaining_length, box_ids))
 
         for box_id in box_ids:
             self.__box_collection.register(Box(box_id))

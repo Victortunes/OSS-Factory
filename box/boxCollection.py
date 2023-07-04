@@ -1,5 +1,5 @@
 from box.box import Box
-from utils import is_containing_exactly_x_number_of_any_char
+from utils import is_containing_exactly_x_number_of_any_char, text_distance
 
 
 class BoxCollection:
@@ -68,6 +68,19 @@ class BoxCollection:
     def collection(self) -> set:
         """returns a copy the set that contains all the boxes"""
         return self.__collection.copy()
+    
+    def get_near_box_ids(self) -> list[tuple[Box,Box]]:
+        """returns a list with a tuple containing the two boxes objects that have near id, 1 char difference"""
+        near_boxes: list[tuple[Box,Box]] = []
+        for box_a in self.__collection:
+            for box_b in self.__collection:
+                try:
+                    if text_distance(box_a.id, box_b.id) == 1:
+                        near_boxes.append((box_a,box_b))
+                except ValueError: #continue if the two ids haven't the same length
+                    pass
+        return near_boxes
+                                
 
 
 class BoxNotExistInCollection(KeyError):

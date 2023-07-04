@@ -74,7 +74,7 @@ class TestBoxCollectionPrefilled(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.__box_collection.unregister(1)
 
-    def test_length(self):
+    def test_length_method(self):
         self.assertEqual(len(self.__box_collection), self.__number_prefilled_boxes)
 
 

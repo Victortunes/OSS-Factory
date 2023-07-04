@@ -43,28 +43,28 @@ class TestUtilsIsContainingExactlyXNumberOfAnyChar(unittest.TestCase):
             utils.is_containing_exactly_x_number_of_any_char('',0)
 
 
-class TestUtilsTextSimiliraties(unittest.TestCase):
+class TestUtilsCommonLetters(unittest.TestCase):
 
     def test_valid(self):
         expected = 'fgij'
-        similiraties = utils.text_similiraties('fghij','fguij')
+        similiraties = utils.common_letters('fghij','fguij')
         self.assertEqual(expected, similiraties)
 
     def test_inequal_texts_lengths(self):
         with self.assertRaises(ValueError):
-            utils.text_similiraties('a','abc')
+            utils.common_letters('a','abc')
 
     def test_wrong_datatype_text_a(self):
         with self.assertRaises(TypeError):
-            utils.text_similiraties(1,'abc') # type: ignore
+            utils.common_letters(1,'abc') # type: ignore
     
     def test_wrong_datatype_text_b(self):
         with self.assertRaises(TypeError):
-            utils.text_similiraties('a',1) # type: ignore
+            utils.common_letters('a',1) # type: ignore
 
     def test_wrong_datatype_text_a_and_b(self):
         with self.assertRaises(TypeError):
-            utils.text_similiraties(1,1) # type: ignore
+            utils.common_letters(1,1) # type: ignore
 
 
 class TestUtilsTextDistance(unittest.TestCase):

@@ -34,25 +34,25 @@ def is_containing_exactly_x_number_of_any_char(text: str, occurence_number: int)
     return occurence_number in occurence_per_letter.values()
 
 
-def text_similiraties(text_a: str, text_b: str) -> str:
-    """return the similar parts between two strings
+def common_letters(text_a: str, text_b: str) -> str:
+    """return the common letters between two strings
 
     Parameters
     ----------
         text_a : str
-            text to extract similiraties with text_b
+            text to extract common letters with text_b
         text_b : 
-            text to extract similiraties with text_a
+            text to extract common letters with text_a
     """
     if type(text_a) is not str or type(text_b) is not str: raise TypeError('text must be a string')
     if len(text_a) != len(text_b): raise ValueError('text_a and text_b must have the same length')
-    similiraties = ''
+    common_letters = ''
 
     for i, letter_a in enumerate(text_a):
         letter_b = text_b[i]
-        if letter_a == letter_b: similiraties += letter_a
+        if letter_a == letter_b: common_letters += letter_a
     
-    return similiraties
+    return common_letters
 
 
 def text_distance(text_a: str, text_b: str) -> int:

@@ -1,4 +1,4 @@
-from boxId import BoxId
+from box.boxId import BoxId
 
 class Box:
 

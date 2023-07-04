@@ -1,4 +1,4 @@
-from box import Box
+from box.box import Box
 
 class BoxCollection:
     def __init__(self) -> None:

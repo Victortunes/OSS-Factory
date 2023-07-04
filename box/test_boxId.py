@@ -1,6 +1,6 @@
 import unittest
 
-from boxId import BoxId, IdWrongLength, IdNotAlphabetic
+from box.boxId import BoxId, IdWrongLength, IdNotAlphabetic
 
 
 class TestBoxId(unittest.TestCase):

@@ -1,7 +1,7 @@
 import unittest
 
-from boxId import BoxId
-from box import Box
+from box.boxId import BoxId
+from box.box import Box
 
 
 class TestBox(unittest.TestCase):

@@ -1,9 +1,9 @@
 import unittest
 import random
 
-from boxCollection import BoxCollection, BoxAlreadyExistInCollection, BoxNotExistInCollection
-from box import Box
-from boxId import BoxId
+from box.boxCollection import BoxCollection, BoxAlreadyExistInCollection, BoxNotExistInCollection
+from box.box import Box
+from box.boxId import BoxId
 
 class TestBoxCollectionEmpty(unittest.TestCase):
 

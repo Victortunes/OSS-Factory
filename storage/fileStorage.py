@@ -7,25 +7,46 @@ from box.boxCollection import BoxCollection
 
 
 class FileStorage:
+    """
+    Represent data access to file storage
+
+    Methods
+    -------
+    register_into_box_collection -> set
+        return a BoxCollection object filled with box ids provided in the file
+
+    Properties
+    ----------
+    path -> Path
+        return the path object associated with the actual file
+    """
     
     def __init__(self, str_path:str) -> None:
+        """
+        Constructs all the necessary attributes for the FileStorage object.
+
+        Parameters
+        ----------
+            str_path : str
+                path to the file to read
+        """
         self.__data_validation_path(str_path)
         path = Path(str_path)
         self.__validate_file_path(path)
         self.__path = path
 
     def __data_validation_path(self, path:str) -> None:
+        """Validate the provided data, raise an error if not valid"""
         if type(path) is not str: raise TypeError('path must be a string')
     
     def __validate_file_path(self, path:Path) -> None:
+        """Validate the provided path, raise an error if not valid"""
         if not path.exists(): raise PathNotExists(str(path))
         if not path.is_file(): raise NotAFile(str(path))
 
-    def __data_validation_box_collection(self, box_collection: BoxCollection) -> None:
-        if type(box_collection) != BoxCollection: raise TypeError('box_collection must be a BoxCollection object')
-
-    def register_into_box_collection(self, box_collection: BoxCollection) -> tuple[BoxCollection, list[dict[str,str|IdNotAlphabetic|IdWrongLength]]]:
-        self.__data_validation_box_collection(box_collection)
+    def register_into_box_collection(self) -> tuple[BoxCollection, list[dict[str,str|IdNotAlphabetic|IdWrongLength]]]:
+        """return a BoxCollection object filled with box ids provided in the file"""
+        box_collection = BoxCollection()
         self.__validate_file_path(self.__path)
 
         box_collection = copy.copy(box_collection)
@@ -44,6 +65,7 @@ class FileStorage:
 
     @property
     def path(self) -> Path:
+        """return the path object associated with the actual file"""
         return self.__path
 
 

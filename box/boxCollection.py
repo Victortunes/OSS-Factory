@@ -75,6 +75,7 @@ class BoxCollection:
         for box_a in self.__collection:
             for box_b in self.__collection:
                 try:
+                    if box_a == box_b: break
                     if text_distance(box_a.id, box_b.id) == 1:
                         near_boxes.append((box_a,box_b))
                 except ValueError: #continue if the two ids haven't the same length

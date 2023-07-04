@@ -37,23 +37,23 @@ class TestBoxCollectionEmpty(unittest.TestCase):
         self.assertEqual(expected, self.__box_collection.checksum)
 
     def test_valid_near_box_ids(self):
-        expected = ('fguij','fghij')
+        expected = ('fghij','fguij')
         box_ids = ('abcde', 'fghij','klmno','pqrst','fguij','axcye','wvxyz')
         for box_id in box_ids:
             self.__box_collection.register(Box(box_id))
         near_boxes = self.__box_collection.get_near_box_ids()
         actual = (near_boxes[0][0].id, near_boxes[0][1].id)
+        self.assertEqual(len(near_boxes), 1) #only one couple should be returned
         self.assertEqual(expected,actual)
 
     def test_inequal_length_id_near_box_ids(self):
-        expected = ('fguij','fghij')
-        box_ids = expected
+        expected = ('fghij','fguij')
+        box_ids = ('aegjutcsre','fguij','acbde', 'azertzdqy','fghij', 'dsqdezdgvh')
         for box_id in box_ids:
             self.__box_collection.register(Box(box_id))
-        for __ in range(10):
-            self.__box_collection.register(Box(BoxId.get_random_box_id().id))
         near_boxes = self.__box_collection.get_near_box_ids()
         actual = (near_boxes[0][0].id, near_boxes[0][1].id)
+        self.assertEqual(len(near_boxes), 1) #only one couple should be returned
         self.assertEqual(expected,actual)
 
     def test_only_one_box_near_box_ids(self):

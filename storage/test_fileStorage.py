@@ -49,8 +49,7 @@ class TestFileStorageRegister(unittest.TestCase):
         self.__file.close()
         
         file_storage = FileStorage(self.__file_name)
-        actual_box_collection = BoxCollection()
-        actual_box_collection, unregistered_boxes = file_storage.register_into_box_collection(actual_box_collection)
+        actual_box_collection, unregistered_boxes = file_storage.register_into_box_collection()
 
         self.assertEqual(len(unregistered_boxes), 0, "Error during importation of box ids")
         self.assertEqual(set(map(lambda box: box.id, actual_box_collection.collection)), set(map(lambda box: box.id, self.__expected_box_collection)), msg='Missing or more or incorrect imported box ids')
@@ -66,8 +65,7 @@ class TestFileStorageRegister(unittest.TestCase):
             self.__file.close()
             
             file_storage = FileStorage(self.__file_name)
-            actual_box_collection = BoxCollection()
-            actual_box_collection, unregistered_boxes = file_storage.register_into_box_collection(actual_box_collection)
+            actual_box_collection, unregistered_boxes = file_storage.register_into_box_collection()
 
             self.assertEqual(len(unregistered_boxes), 0, "Error during importation of box ids")
             self.assertEqual(set(map(lambda box: box.id, actual_box_collection.collection)), set(map(lambda box: box.id, self.__expected_box_collection)), msg='Missing or more or incorrect imported box ids')
@@ -78,8 +76,7 @@ class TestFileStorageRegister(unittest.TestCase):
         self.__file.close()
         
         file_storage = FileStorage(self.__file_name)
-        actual_box_collection = BoxCollection()
-        actual_box_collection, unregistered_boxes = file_storage.register_into_box_collection(actual_box_collection)
+        actual_box_collection, unregistered_boxes = file_storage.register_into_box_collection()
 
         self.assertEqual(len(actual_box_collection), 0, msg="Valid if the invalid box isn't in the valid list") 
         self.assertEqual(len(unregistered_boxes), 1, msg='Valid if the invalid box id is in the invalid list')
@@ -92,8 +89,7 @@ class TestFileStorageRegister(unittest.TestCase):
         self.__file.close()
         
         file_storage = FileStorage(self.__file_name)
-        actual_box_collection = BoxCollection()
-        actual_box_collection, unregistered_boxes = file_storage.register_into_box_collection(actual_box_collection)
+        actual_box_collection, unregistered_boxes = file_storage.register_into_box_collection()
 
         self.assertEqual(len(actual_box_collection), 0, msg="Valid if the invalid box isn't in the valid list") 
         self.assertEqual(len(unregistered_boxes), 1, msg='Valid if the invalid box id is in the invalid list')

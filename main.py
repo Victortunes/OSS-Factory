@@ -3,10 +3,9 @@ from box.boxCollection import BoxCollection
 
 path = './storage/input.txt'
 
-box_collection = BoxCollection()
 file_storage = FileStorage(path)
 
-box_collection, unregistered_boxes = file_storage.register_into_box_collection(box_collection)
+box_collection, unregistered_boxes = file_storage.register_into_box_collection()
 cheksum = box_collection.checksum
 
 if unregistered_boxes:

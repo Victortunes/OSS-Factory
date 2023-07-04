@@ -29,9 +29,10 @@ class TestBoxCollectionEmpty(unittest.TestCase):
 class TestBoxCollectionPrefilled(unittest.TestCase):
 
     def setUp(self):
+        self.__number_prefilled_boxes = 10
         self.__box_collection = BoxCollection()
         self.__prefilled_boxes: set[Box] = set()
-        for __ in range(10):
+        for __ in range(self.__number_prefilled_boxes):
             box = Box(BoxId.get_random_box_id().id)
             self.__prefilled_boxes.add(box)
             try: self.__box_collection.register(box)
@@ -59,6 +60,9 @@ class TestBoxCollectionPrefilled(unittest.TestCase):
     def test_unregister_box_wrong_datatype(self):
         with self.assertRaises(TypeError):
             self.__box_collection.unregister(1)
+
+    def test_length(self):
+        self.assertEqual(len(self.__box_collection), self.__number_prefilled_boxes)
 
 
 

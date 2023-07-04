@@ -6,6 +6,9 @@ class BoxCollection:
 
     def __iter__(self):
         return self.__collection.__iter__()
+    
+    def __len__(self):
+        return len(self.collection)
 
     def __data_validation_box(self, box: Box) -> None:
         if type(box) != Box: raise TypeError('box must be a Box object')

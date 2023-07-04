@@ -67,5 +67,30 @@ class TestUtilsTextSimiliraties(unittest.TestCase):
             utils.text_similiraties(1,1) # type: ignore
 
 
+class TestUtilsTextDistance(unittest.TestCase):
+
+    def test_valid(self):
+        expected = 2
+        similiraties = utils.text_distance('abcde','axcye')
+        self.assertEqual(expected, similiraties)
+
+    def test_inequal_texts_lengths(self):
+        with self.assertRaises(ValueError):
+            utils.text_distance('a','abc')
+
+    def test_wrong_datatype_text_a(self):
+        with self.assertRaises(TypeError):
+            utils.text_distance(1,'abc') # type: ignore
+    
+    def test_wrong_datatype_text_b(self):
+        with self.assertRaises(TypeError):
+            utils.text_distance('a',1) # type: ignore
+
+    def test_wrong_datatype_text_a_and_b(self):
+        with self.assertRaises(TypeError):
+            utils.text_distance(1,1) # type: ignore
+
+
+
 if __name__ == '__main__':
     unittest.main()

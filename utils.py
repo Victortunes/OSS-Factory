@@ -53,3 +53,24 @@ def text_similiraties(text_a: str, text_b: str) -> str:
         if letter_a == letter_b: similiraties += letter_a
     
     return similiraties
+
+
+def text_distance(text_a: str, text_b: str) -> int:
+    """return the number of different char between two strings
+
+    Parameters
+    ----------
+        text_a : str
+            text to extract to find distance with text_b
+        text_b : 
+            text to extract to find distance with text_a
+    """
+    if type(text_a) is not str or type(text_b) is not str: raise TypeError('text must be a string')
+    if len(text_a) != len(text_b): raise ValueError('text_a and text_b must have the same length')
+    distance = 0
+
+    for i, letter_a in enumerate(text_a):
+        letter_b = text_b[i]
+        if letter_a != letter_b: distance +=1
+    
+    return distance

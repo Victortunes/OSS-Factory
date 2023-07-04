@@ -1,4 +1,11 @@
 def occurence_per_char(text: str) -> dict[str,int]:
+    """return a dict with letter as key associated with the number of occurences
+
+    Parameters
+    ----------
+        text : str
+            text to parse
+    """
     if type(text) is not str: raise TypeError('text must be a string')
     occurence_per_letter: dict[str,int] = {}
 
@@ -11,6 +18,15 @@ def occurence_per_char(text: str) -> dict[str,int]:
     return occurence_per_letter
 
 def is_containing_exactly_x_number_of_any_char(text: str, occurence_number: int) -> bool:
+    """return True if the letter is exactly present the number of time specified else False
+
+    Parameters
+    ----------
+        text : str
+            text to parse
+        occurence_number : int
+            the number of time that the letter should be present
+    """
     if type(text) is not str: raise TypeError('text must be a string')
     if type(occurence_number) is not int: raise TypeError('occurence_number must be an integer')
     if occurence_number < 1: raise ValueError('occurence_number must be greater than 0')

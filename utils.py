@@ -32,3 +32,24 @@ def is_containing_exactly_x_number_of_any_char(text: str, occurence_number: int)
     if occurence_number < 1: raise ValueError('occurence_number must be greater than 0')
     occurence_per_letter = occurence_per_char(text)
     return occurence_number in occurence_per_letter.values()
+
+
+def text_similiraties(text_a: str, text_b: str) -> str:
+    """return the similar parts between two strings
+
+    Parameters
+    ----------
+        text_a : str
+            text to extract similiraties with text_b
+        text_b : 
+            text to extract similiraties with text_a
+    """
+    if type(text_a) is not str or type(text_b) is not str: raise TypeError('text must be a string')
+    if len(text_a) != len(text_b): raise ValueError('text_a and text_b must have the same length')
+    similiraties = ''
+
+    for i, letter_a in enumerate(text_a):
+        letter_b = text_b[i]
+        if letter_a == letter_b: similiraties += letter_a
+    
+    return similiraties

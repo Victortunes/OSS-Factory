@@ -2,6 +2,7 @@ import unittest
 import tempfile
 from pathlib import Path
 import os
+import platform
 
 from box.boxId import BoxId, IdWrongLength, IdNotAlphabetic
 from box.box import Box
@@ -32,7 +33,11 @@ class TestFileStoragePath(unittest.TestCase):
 class TestFileStorageRegister(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.__file = tempfile.TemporaryFile('at', delete=False)
+        file_mode = 'at'
+        if platform.system() == 'Windows':
+            self.__file = tempfile.TemporaryFile(file_mode, delete=False)
+        else:
+            self.__file = tempfile.TemporaryFile(file_mode)
         self.__file_name = self.__file.name
         self.__expected_box_collection: set[Box] = set()
     

@@ -52,16 +52,17 @@ class FileStorage:
         box_collection = copy.copy(box_collection)
         unregistered_boxes: list[dict[str,str|IdNotAlphabetic|IdWrongLength]] = []
 
-        for box_id in self.__path.open('rt'):
-            if box_id[-1] == '\n': box_id = box_id[:-1] #delete newline char
-            try:
-                box = Box(box_id)
-                box_collection.register(box)
-            except (IdNotAlphabetic, IdWrongLength) as e:
-                box_error = {'error':e,'box_id':box_id}
-                unregistered_boxes.append(box_error)
-        
-        return box_collection, unregistered_boxes
+        with self.__path.open('rt') as file:
+            for box_id in file:
+                if box_id[-1] == '\n': box_id = box_id[:-1] #delete newline char
+                try:
+                    box = Box(box_id)
+                    box_collection.register(box)
+                except (IdNotAlphabetic, IdWrongLength) as e:
+                    box_error = {'error':e,'box_id':box_id}
+                    unregistered_boxes.append(box_error)
+            
+            return box_collection, unregistered_boxes
 
     @property
     def path(self) -> Path:

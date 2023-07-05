@@ -5,17 +5,16 @@ import os
 
 from box.boxId import BoxId, IdWrongLength, IdNotAlphabetic
 from box.box import Box
-from box.boxCollection import BoxCollection
 from storage.fileStorage import FileStorage, NotAFile, PathNotExists
 
 
 class TestFileStoragePath(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.__str_path: str = './storage/input.txt'
+        self.__path: Path = Path(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
 
     def test_path_valid(self):
-        self.assertEqual(FileStorage(self.__str_path).path, Path(self.__str_path))
+        self.assertEqual(FileStorage(str(self.__path)).path, self.__path)
 
     def test_path_invalid_datatype(self):
         with self.assertRaises(TypeError):
@@ -23,7 +22,7 @@ class TestFileStoragePath(unittest.TestCase):
 
     def test_path_not_exists(self):
         with self.assertRaises(PathNotExists):
-            FileStorage(' ')
+            FileStorage('/&é#')
     
     def test_path_not_a_file(self):
         with self.assertRaises(NotAFile):

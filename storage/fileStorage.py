@@ -31,7 +31,7 @@ class FileStorage:
                 path to the file to read
         """
         self.__data_validation_path(str_path)
-        path = Path(str_path)
+        path = Path(str_path).absolute()
         self.__validate_file_path(path)
         self.__path = path
 
@@ -71,10 +71,10 @@ class FileStorage:
 
 class PathNotExists(ValueError):
     def __init__(self, str_path: str):
-        self.message = f'Path : {str_path}'
+        self.message = f'Path not exists at : {str_path}'
         super().__init__(self.message)
 
 class NotAFile(ValueError):
     def __init__(self, str_path: str):
-        self.message = f'Path : {str_path}'
+        self.message = f'Not a file at : {str_path}'
         super().__init__(self.message)

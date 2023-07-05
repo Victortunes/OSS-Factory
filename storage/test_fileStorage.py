@@ -38,7 +38,7 @@ class TestFileStorageRegister(unittest.TestCase):
             self.__file = tempfile.TemporaryFile(file_mode, delete=False)
         else:
             self.__file = tempfile.TemporaryFile(file_mode)
-        self.__file_name = self.__file.name
+        self.__file_name = str(self.__file.name)
         self.__expected_box_collection: set[Box] = set()
     
     def tearDown(self) -> None:

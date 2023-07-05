@@ -5,7 +5,7 @@ import logging
 
 from display import Display
 
-class TesDisplay(unittest.TestCase):
+class TestDisplay(unittest.TestCase):
 
     def setUp(self) -> None:
         self.__display = Display()

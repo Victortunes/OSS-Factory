@@ -57,10 +57,10 @@ class Display:
         self.__data_validation_string(message, 'message')
         print(message)
 
-    def warn(self, message:str):
+    def warning(self, message:str):
         """display a warn with the provided message"""
         self.__data_validation_string(message, 'message')
-        logging.warn(f' {message}')
+        logging.warning(f' {message}')
 
     def error(self, message:str):
         """display an error with the provided message"""

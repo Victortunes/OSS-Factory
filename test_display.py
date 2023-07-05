@@ -29,15 +29,15 @@ class TestDisplay(unittest.TestCase):
 
     def test_valid_warn(self):
         expected = 'abc'
-        with self.assertLogs(level=logging.WARN) as log:
-            self.__display.warn(expected)
+        with self.assertLogs(level=logging.WARNING) as log:
+            self.__display.warning(expected)
             self.assertEqual(len(log.output), 1)
             self.assertEqual(len(log.records), 1)
             self.assertIn(expected, log.output[0])
 
     def test_wrong_datatype_warn(self):
         with self.assertRaises(TypeError):
-            self.__display.warn(1) #type: ignore
+            self.__display.warning(1) #type: ignore
 
     def test_valid_error(self):
         expected = 'abc'

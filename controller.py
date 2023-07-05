@@ -32,7 +32,7 @@ class Controller:
                 warn_msg += 'Warning somes boxes hasn\'t be imported\n'
                 for unregistered_box in unregistered_boxes:
                     warn_msg += f'Box id : {unregistered_box["box_id"]} Reason : {unregistered_box["error"]}\n'
-                self.__display.warn(warn_msg)
+                self.__display.warning(warn_msg)
             
             self.__answer_part1(box_collection)
             self.__answer_part2(box_collection)
